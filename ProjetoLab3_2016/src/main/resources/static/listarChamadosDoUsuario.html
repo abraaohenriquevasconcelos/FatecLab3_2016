@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Lista de chamados</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<link href="css/bootstrap.min.css" rel=stylesheet>
+ 
+	<link href="css/bootstrap.css" rel="stylesheet">
+   
+   <script>
+   		$(document).ready(function(){
+   			var userName = sessionStorage.getItem("nomeUsuario");
+   			
+   			alert(userName);
+			if(userName == null){
+				window.location.href = '/index.html'
+			}
+   			
+			
+   			
+   			$.getJSON("/listarChamadosDoUsuario/"+userName+"?format=json&jsoncallback=", function(data){
+   				
+				
+   				var linhas = [];
+   				
+   				alert(JSON.stringify(data));
+   				
+   				$.each(data, function(i){
+   					linhas.push("<tr> <td>"+this.numeroChamado+"</td> <td>"+this.nomeUsuarioChamado+"</td> <td>"+this.descricaoChamado+"</td> <td>"+this.dataChamado+"</td><td>"+this.situacaoChamado+"</td></tr>");
+   					
+   				});
+   				
+   				alert(linhas[0]);
+   				alert(linhas[1]);
+   				alert(linhas[2]);
+   				alert(linhas[3]);
+   			
+   				$("#tbody").append(linhas);
+   				
+   			});
+   		});
+   </script>
+</head>
+<body>
+
+		<ul class="nav nav-pills">
+			<li><a href="usuario.html">Painel de Controle</a></li>
+			<li><a href="abrirChamadoUsuario.html">Abrir Chamado</a></li>
+			<li class="active"><a href="listarChamadosDoUsuario.html">Listar Chamados</a></li>
+		</ul>
+
+<table class="table table-bordered">
+	<caption style="font-size: 20px;">Chamados</caption>
+	<thead>
+		<tr>
+			<th>Número do Chamado</th>
+			<th>Usuário</th>
+			<th>Descrição</th>
+			<th>Data</th>
+			<th>Situação</th>
+		</tr>
+	</thead>
+	<tbody id="tbody">
+		
+	</tbody>
+
+</table>
+		
+		
+		
+
+	
+</body>
+</html>

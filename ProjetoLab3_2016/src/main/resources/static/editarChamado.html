@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Lista de chamados</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<link href="css/bootstrap.min.css" rel=stylesheet>
+ 
+	<link href="css/bootstrap.css" rel="stylesheet">
+   
+   <script>
+		$('document').ready(function(){
+			var nomeUsuario = sessionStorage.getItem("nomeUsuario");
+		   	var nivelAcesso = sessionStorage.getItem("nivelAcesso");
+		    if(nomeUsuario == null || nivelAcesso == "2"){
+		   		window.location.href = '/index.html'
+		   	}
+		   	
+		    
+		   	var numeroChamado = location.search.substring(1);
+		   	alert("Numero do Chamado: "+numeroChamado);
+		   	//$.post("/editarChamado", JSON.stringify({'numeroChamado':})
+		});
+	</script>
+</head>
+
+<body>	 
+</body>
+</html>  	
